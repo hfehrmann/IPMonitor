@@ -1,0 +1,1 @@
+0 * * * *   (cd /app; python3 /app/ip_checker.py) >> /var/log/ip_checker.log 2>&1

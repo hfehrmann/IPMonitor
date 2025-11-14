@@ -1,0 +1,10 @@
+services:
+  ip_checker:
+    restart: unless-stopped
+    build: .
+    volumes:
+      - ./src:/app
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_GROUP_CHAT_ID=${TELEGRAM_GROUP_CHAT_ID}
+
