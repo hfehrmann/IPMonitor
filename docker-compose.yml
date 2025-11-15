@@ -4,6 +4,7 @@ services:
     build: .
     volumes:
       - ./src:/app
+      - ./data:/data
     environment:
       - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
       - TELEGRAM_GROUP_CHAT_ID=${TELEGRAM_GROUP_CHAT_ID}

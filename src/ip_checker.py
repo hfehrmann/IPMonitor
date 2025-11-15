@@ -5,13 +5,15 @@ from urllib.parse import urlencode
 import urllib.request
 import json
 import os
+import logging
+
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S')
 
 CWD = os.getcwd()
-DATA_PATH = os.path.join(CWD, "data")
-FILE_PATH = os.path.join(CWD, "data", "ip.txt")
-
-def setup_data_dir():
-    os.makedirs(DATA_PATH, exist_ok=True)
+FILE_PATH = os.path.join("/data", "ip.txt")
 
 def get_ip() -> Optional[str]:
     response = urllib.request.urlopen("http://ip-api.com/json/")
@@ -42,22 +44,20 @@ def send_notif(new_ip: str):
 
 
 # Main
-setup_data_dir()
-
 ip = get_ip()
 stored_ip = get_stored_ip()
 
 if ip is None:
     # ntfy about problem add redis for failure logic checking.
-    print("error hitting API")
+    logging.error("error hitting API")
     exit(1)
 
 if stored_ip is None or ip != stored_ip:
-    print("distinct")
+    logging.info("distinct")
     # ntfy
     store_ip(ip)
     send_notif(ip)
 elif ip == stored_ip:
-    print("same")
+    logging.info("same")
 
 

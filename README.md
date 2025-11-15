@@ -1,6 +1,6 @@
 # IP Monitor
 
-This project runs a cron job every hour to check if your public IP has changed or not. If it has changed, it sends a telegram message to a group to notify the new ip. It just uses a single file as storage under `src/data`.
+This project runs a cron job every hour to check if your public IP has changed or not. If it has changed, it sends a telegram message to a group to notify the new ip. It just uses a single file as storage under `./data`.
 
 ## Requirements
 
